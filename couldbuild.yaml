@@ -1,0 +1,87 @@
+steps:
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'docker'
+    args:
+      - build
+      - -f
+      - task_1/Dockerfile
+      - -t
+      - ${_REGISTRY_BASE}/task_1:$SHORT_SHA
+      - -t
+      - ${_REGISTRY_BASE}/task_1:${_SAFE_BRANCH}
+      - '.'
+    dir: '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'docker'
+    args:
+      - build
+      - -f
+      - task_2/Dockerfile
+      - -t
+      - ${_REGISTRY_BASE}/task_2:$SHORT_SHA
+      - -t
+      - ${_REGISTRY_BASE}/task_2:${_SAFE_BRANCH}
+      - '.'
+    dir: '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'docker'
+    args:
+      - build
+      - -f
+      - task_3/Dockerfile
+      - -t
+      - ${_REGISTRY_BASE}/task_3:$SHORT_SHA
+      - -t
+      - ${_REGISTRY_BASE}/task_3:${_SAFE_BRANCH}
+      - '.'
+    dir: '.'
+
+  - name: python
+    entrypoint: pip
+    args: [ "install", "-r", "utils/requirements.txt", "--user" ]
+
+  # run
+  # - name: python
+  #   entrypoint: python
+  #   args: [ "utils/deploy_dag.py", "--dags_directory=${_DAGS_DIRECTORY}", "--dags_bucket=${_DAGS_BUCKET}" ]
+
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/ml-dev/secrets/twitter_api_key/versions/1
+    env: 'API_KEY'
+  - versionName: projects/ml-dev/secrets/twitter_api_secret/versions/1
+    env: 'API_SECRET'
+  - versionName: projects/ml-dev/secrets/twitter_access_token/versions/1
+    env: 'ACCESS_TOKEN'
+  - versionName: projects/ml-dev/secrets/twitter_access_secret/versions/1
+    env: 'ACCESS_SECRET'
+  - versionName: projects/ml-dev/secrets/twitter_bearer_token/versions/1
+    env: 'BEARER_TOKEN'
+  - versionName: projects/ml-dev/secrets/twitter_client_id/versions/1
+    env: 'CLIENT_ID'
+  - versionName: projects/ml-dev/secrets/twitter_client_secret/versions/1
+    env: 'CLIENT_SECRET'
+
+
+
+
+options:
+  dynamic_substitutions: true
+images:
+  - '${_REGISTRY_BASE}/task_1:$SHORT_SHA'
+  - '${_REGISTRY_BASE}/task_1:${_SAFE_BRANCH}'
+  - '${_REGISTRY_BASE}/task_2:$SHORT_SHA'
+  - '${_REGISTRY_BASE}/task_2:${_SAFE_BRANCH}'
+  - '${_REGISTRY_BASE}/task_3:$SHORT_SHA'
+  - '${_REGISTRY_BASE}/task_3:${_SAFE_BRANCH}'
+timeout: 40m
+substitutions:
+  _SAFE_BRANCH: ${BRANCH_NAME//\//-}
+  _REGISTRY_BASE: us-docker.pkg.dev/gcp-wow-rwds-ai-mleops-prod/mlchapter
+  _DAGS_DIRECTORY: dags/.
+  _DAGS_BUCKET: us-central1-featurepipe-0a1e7485-bucket #us-central1-automation-serv-2096585b-bucket
+
