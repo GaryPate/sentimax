@@ -14,5 +14,5 @@ RUN pip install \
     dagster-celery-k8s
 
 # Get example pipelines
-WORKDIR /home/${USER}/git/sentimax/dagster-image
-COPY example_repo/ /
+# WORKDIR /home/${USER}/git/sentimax/dagster-image
+COPY ./dagster-image/example_repo .
