@@ -14,4 +14,4 @@ RUN pip install \
     dagster-celery-k8s
 
 # Get example pipelines
-COPY build_cache/ /
+COPY example/ /
