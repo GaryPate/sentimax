@@ -13,18 +13,19 @@ steps:
       - '.'
     dir: '.'
     secretEnv: ['API_KEY', 'API_SECRET', 'ACCESS_TOKEN', 'ACCESS_SECRET', 'BEARER_TOKEN', 'CLIENT_ID', 'CLIENT_SECRET']
-  # - name: 'gcr.io/cloud-builders/docker'
-  #   entrypoint: 'docker'
-  #   args:
-  #     - build
-  #     - -f
-  #     - pipe/Dockerfile
-  #     - -t
-  #     - ${_REGISTRY_BASE}/pipe:$SHORT_SHA
-  #     - -t
-  #     - ${_REGISTRY_BASE}/pipe:${_SAFE_BRANCH}
-  #     - '.'
-  #   dir: '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'docker'
+    args:
+      - build
+      - -f
+      - dagster-image/Dockerfile
+      - -t
+      - ${_REGISTRY_BASE}/dagster-image:$SHORT_SHA
+      - -t
+      - ${_REGISTRY_BASE}/dagster-image:${_SAFE_BRANCH}
+      - '.'
+    dir: '.'
 
 availableSecrets:
   secretManager:

@@ -4,9 +4,9 @@
 from dagster_docker import docker_executor
 from dagster import define_asset_job
 import os
-
+    
 executor = docker_executor.configured({
-  'image': 'australia-southeast1-docker.pkg.dev/ml-dev-402423/dagster-docker/image_name:latest',
+  'image': 'australia-southeast1-docker.pkg.dev/ml-dev-402423/dagster-docker/models:latest',
   'registry': {
     'url': 'australia-southeast1-docker.pkg.dev/ml-dev-402423/dagster-docker',
     'username': 'my_user',
