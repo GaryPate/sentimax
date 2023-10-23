@@ -15,4 +15,4 @@ RUN pip install \
 
 # Get example pipelines
 WORKDIR /home/${USER}/git/sentimax/dagster-image
-COPY ./example_repo /
+COPY example_repo/ /
