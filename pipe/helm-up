@@ -1,0 +1,20 @@
+microk8s kubectl config set-context dagster --namespace default --cluster docker-desktop --user=docker-desktop
+microk8s kubectl config use-context dagster
+
+
+kubectl create secret generic dagster-aws-access-key-id --from-literal=AWS_ACCESS_KEY_ID=<YOUR ACCESS KEY ID>
+kubectl create secret generic dagster-aws-secret-access-key --from-literal=AWS_SECRET_ACCESS_KEY=<SECRET ACCESS KEY>
+
+
+microk8s helm repo add dagster https://dagster-io.github.io/helm
+
+microk8s helm show values dagster/dagster > values.yaml
+
+cd $HOME                 
+mkdir .kube
+cd .kube   
+microk8s config > config
+
+export KUBECONFIG=$HOME/.kube/config
+
+export DAGSTER_HOME=$HOME/dagster_home

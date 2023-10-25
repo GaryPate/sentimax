@@ -8,17 +8,7 @@ import json
 from dagster import asset
 
 
-defs = Definitions(
-    assets=[twitter_data],
-    resources={
-        "io_manager": BigQueryPandasIOManager(
-            project="ml-dev",  # required
-            location="australia-southeast1",  # optional, defaults to the default location for the project - see https://cloud.google.com/bigquery/docs/locations for a list of locations
-            dataset="SENTIMAX",  # optional, defaults to PUBLIC
-            timeout=15.0,  # optional, defaults to None
-        )
-    },
-)
+
 
 
 
@@ -36,3 +26,16 @@ def twitter_data() -> pd.DataFrame:
 
     return df
 
+
+
+defs = Definitions(
+    assets=[twitter_data],
+    resources={
+        "io_manager": BigQueryPandasIOManager(
+            project="ml-dev",  # required
+            location="australia-southeast1",  # optional, defaults to the default location for the project - see https://cloud.google.com/bigquery/docs/locations for a list of locations
+            dataset="SENTIMAX",  # optional, defaults to PUBLIC
+            timeout=15.0,  # optional, defaults to None
+        )
+    },
+)
