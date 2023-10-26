@@ -62,7 +62,7 @@ substitutions:
 
 #930064416314@cloudbuild.gserviceaccount.com
 
-#gcloud projects add-iam-policy-binding  ml-dev-402423 --member='serviceAccount:930064416314@cloudbuild.gserviceaccount.com' --role='roles/secretmanager.secretAccessor'
+#gcloud projects add-iam-policy-binding  ml-dev-403200 --member='serviceAccount:229198640655@cloudbuild.gserviceaccount.com' --role='roles/secretmanager.secretAccessor'
 
 # gcloud builds submit --config cloudbuild.yaml SOURCE_CODE
 
