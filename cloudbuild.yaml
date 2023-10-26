@@ -29,19 +29,19 @@ steps:
 
 availableSecrets:
   secretManager:
-  - versionName: projects/ml-dev-402423/secrets/twitter_api_key/versions/latest
+  - versionName: projects/ml-dev-403200/secrets/twitter_api_key/versions/latest
     env: 'API_KEY'
-  - versionName: projects/ml-dev-402423/secrets/twitter_api_secret/versions/latest
+  - versionName: projects/ml-dev-403200/secrets/twitter_api_secret/versions/latest
     env: 'API_SECRET'
-  - versionName: projects/ml-dev-402423/secrets/twitter_access_token/versions/latest
+  - versionName: projects/ml-dev-403200/secrets/twitter_access_token/versions/latest
     env: 'ACCESS_TOKEN'
-  - versionName: projects/ml-dev-402423/secrets/twitter_access_secret/versions/latest
+  - versionName: projects/ml-dev-403200/secrets/twitter_access_secret/versions/latest
     env: 'ACCESS_SECRET'
-  - versionName: projects/ml-dev-402423/secrets/twitter_bearer_token/versions/latest
+  - versionName: projects/ml-dev-403200/secrets/twitter_bearer_token/versions/latest
     env: 'BEARER_TOKEN'
-  - versionName: projects/ml-dev-402423/secrets/twitter_client_id/versions/latest
+  - versionName: projects/ml-dev-403200/secrets/twitter_client_id/versions/latest
     env: 'CLIENT_ID'
-  - versionName: projects/ml-dev-402423/secrets/twitter_client_secret/versions/latest
+  - versionName: projects/ml-dev-403200/secrets/twitter_client_secret/versions/latest
     env: 'CLIENT_SECRET'
 
 
@@ -55,7 +55,7 @@ images:
 timeout: 500s
 substitutions:
   _SAFE_BRANCH: ${BRANCH_NAME//\//-}
-  _REGISTRY_BASE: australia-southeast1-docker.pkg.dev/ml-dev-402423/dagster-docker
+  _REGISTRY_BASE: australia-southeast1-docker.pkg.dev/ml-dev-403200/dagster-docker
 
 
 #  _DAGS_DIRECTORY: dags/.
