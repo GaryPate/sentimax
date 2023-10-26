@@ -66,9 +66,9 @@ substitutions:
 
 # gcloud builds submit --config cloudbuild.yaml SOURCE_CODE
 
-# PN=$(gcloud projects describe ml-dev-402423 --format="value(projectNumber)")
-# CLOUD_BUILD_SERVICE_AGENT="service-930064416314@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-# gcloud projects add-iam-policy-binding ml-dev-402423 \
+# PN=$(gcloud projects describe ml-dev-403200 --format="value(projectNumber)")
+# CLOUD_BUILD_SERVICE_AGENT="service-229198640655@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+# gcloud projects add-iam-policy-binding ml-dev-403200 \
 #   --member="serviceAccount:${CLOUD_BUILD_SERVICE_AGENT}" \
 #   --role="roles/secretmanager.admin"
 
